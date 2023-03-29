@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="/logout"><button class="btn btn-primary">Đăng xuất</button></a>
+    <table class="table" style="width: 100%;">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Mã SV</th>
+                <th scope="col">Mật khẩu</th>
+                <th scope="col">Họ tên</th>
+                <th scope="col">Ngày sinh</th>
+                <th scope="col">Lớp</th>
+                <th scope="col">Khoa</th>
+                <th scope="col">Số thẻ</th>
+                <th scope="col">CMND</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in list %}
+            <tr>
+                <th scope="row">{{ item['id'] }}</th>
+                <td>{{ item['masv'] }}</td>
+                <td>{{ item['password'].decode('ISO-8859-1') }}</td>
+                <td>{{ item['hoten'] }}</td>
+                <td>{{ item['ngaysinh'] }}</td>
+                <td>{{ item['lop'] }}</td>
+                <td>{{ item['khoa'] }}</td>
+                <td>{{ item['sothe'].decode('ISO-8859-1') }}</td>
+                <td>{{ item['cmnd'].decode('ISO-8859-1') }}</td>
+                <td><a href="./xem_ttsv/{{ item['masv'] }}"><button class="btn btn-primary">Xem thông tin</button></a></td>
+                <td><a href="./suatt/{{ item['masv'] }}"><button class="btn btn-primary">Sửa thông tin</button></a></td>
+                <td><a href="./delete/{{ item['masv'] }}"><button class="btn btn-primary">Xóa sinh viên</button></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="./them_sv"><button class="btn btn-primary">Thêm sv mới</button></a>
+</body>
+
+</html>
